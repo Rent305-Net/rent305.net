@@ -1,0 +1,19 @@
+ {  
+    "input": "./properties",
+    "output": "./build",
+    "albums-output-folder": ".",
+    "title": "Rent 305 - Rental Properties in Miami",
+    "sort-albums-by": "title",
+    "sort-media-by": "filename",
+    "download-photos": "large",
+    "cleanup": true,
+    "theme": "cards",
+    "theme-style": "./custom.less",
+    "footer": "Copyright &copy; 2020 <a href='http://rent305.net'>Rent305.net</a> Email Us: <a href='mailto:info@rent305.net?subject=6515 SW 48th St'>info@rent305.net</a>",
+    "usage-stats": false,
+    "thumb-size": 400,
+    "large-size": 1280,
+    "watermark": "./images/rent305.png", 
+    "watermark-position": "SouthEast",
+    "google-analytics": "UA-97419370-1"
+  }
