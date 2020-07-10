@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow:
+
+Sitemap: rent305.net/sitemap.xml
