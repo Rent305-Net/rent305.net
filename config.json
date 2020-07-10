@@ -3,6 +3,7 @@
     "output": "./build",
     "albums-output-folder": ".",
     "title": "Rent 305 - Rental Properties in Miami",
+    "home-album-name": "Properties",
     "sort-albums-by": "title",
     "sort-media-by": "filename",
     "download-photos": "large",
@@ -13,7 +14,9 @@
     "usage-stats": false,
     "thumb-size": 400,
     "large-size": 1280,
+    "embed-exif": true,
     "watermark": "./images/rent305.png", 
     "watermark-position": "SouthEast",
+    "seo-location": "https://rent305.net",
     "google-analytics": "UA-97419370-1"
   }
