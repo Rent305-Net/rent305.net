@@ -7,11 +7,12 @@ script:
 - docker run -t -i -v "$(pwd):/work" thumbsupgallery/thumbsup /bin/sh -c "cd /work/ && thumbsup --config config.json"
 deploy:
   provider: pages
-  skip-cleanup: true
+  skip_cleanup: true
   local_dir: build
-  committer-from-gh: true
-  keep-history: true
-  github-token:  $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  committer_from_gh: true
+  keep_history: true
+  github_token:  $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  fqdn: rent305.net
   on:
     branch: master
 notifications:
