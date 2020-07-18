@@ -127,3 +127,6 @@ nav.breadcrumbs {
     height: 190px;
   }
 }
+header p {
+  font-size: 12pt;
+}
