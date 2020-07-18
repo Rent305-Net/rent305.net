@@ -1,0 +1,56 @@
+
+<div id="container">
+
+  <!--
+    Gallery title
+  -->
+  <header>
+    <h1><a href="{{relative gallery.home.url}}">{{gallery.title}}</a></h1>
+    <p>Apply Online: <a href='https://www.zillow.com/homedetails/44207880_zpid/' target='_blank'><img src='public/zillow.png' alt='Zillow' height='18'></img></a> |
+      <a href='https://www.apartments.com/6515-sw-48th-st-miami-fl/mpn18jl/' target='_blank'><img src='public/apartments.png' alt='Apartments.com' height='18'></img></a></p>
+  </header>
+
+  <!--
+    Breadcrumbs of parent albums
+  -->
+  <nav class="breadcrumbs">
+    {{#each breadcrumbs~}}
+      <a class="breadcrumb-item" href="{{relative url}}">{{title}}</a>&nbsp;/&nbsp;
+    {{~/each~}}
+    <a class="breadcrumb-item" href="{{relative album.url}}">{{album.title}}</a>
+  </nav>
+
+  <!--
+    Nested albums, if any
+  -->
+  <div id="albums">
+    {{#each album.albums~}}
+      <a href="{{relative url}}" style="background-image: url('{{relative previews.0.urls.large}}')">
+        <div class="info">
+          <h3>{{title}}</h3>
+          <div class="summary">{{summary}}</div>
+          <div class="date">{{{date stats.fromDate}}} - {{{date stats.toDate}}}</div>
+        </div>
+      </a>
+    {{~/each}}
+  </div>
+
+  <!--
+    All photos and videos
+  -->
+  <ul id="media" class="clearfix">
+    {{#each album.files~}}
+      {{> thumbnail}}
+    {{~/each}}
+  </ul>
+
+  <!--
+    Optional footer
+  -->
+  <footer>
+    <p>Apply Online: <a href='https://www.zillow.com/homedetails/44207880_zpid/' target='_blank'><img src='public/zillow.png' alt='Zillow' height='18'></img></a> |
+      <a href='https://www.apartments.com/6515-sw-48th-st-miami-fl/mpn18jl/' target='_blank'><img src='public/apartments.png' alt='Apartments.com' height='18'></img></a></p>
+    <p>{{{gallery.footer}}}</p>
+  </footer>
+
+</div>
