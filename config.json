@@ -1,4 +1,5 @@
  {  
+    "index": "index.html",
     "input": "./properties",
     "output": "./build",
     "albums-output-folder": ".",
@@ -11,7 +12,7 @@
     "theme": "cards",
     "theme-path": "./theme/cards",
     "theme-style": "./custom.less",
-    "footer": "<img src='public/rent305-icon.png' alt='Rent305 Net' height='36pt'/> Copyright &copy;2020 <a href='mailto:info@rent305.net?subject=6515 SW 48th St'>info@rent305.net</a>",
+    "footer": null,
     "usage-stats": false,
     "thumb-size": 400,
     "large-size": 1280,

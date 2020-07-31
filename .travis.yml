@@ -5,6 +5,7 @@ services:
   - docker
 script:
 - docker run -t -i -v "$(pwd):/work" thumbsupgallery/thumbsup /bin/sh -c "cd /work/ && thumbsup --config config.json"
+- cp *.html build
 deploy:
   provider: pages
   skip_cleanup: true
