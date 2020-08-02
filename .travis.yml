@@ -4,9 +4,8 @@ dist: trusty
 services:
   - docker
 script:
-- mkdir -p build
-- cp *.html build
 - docker run -t -i -v "$(pwd):/work" thumbsupgallery/thumbsup /bin/sh -c "cd /work/ && thumbsup --config config.json"
+- ./build.sh
 deploy:
   provider: pages
   skip_cleanup: true
