@@ -26,7 +26,6 @@
           <h1><a href="index.html"><img src="public/rent305-icon.png" alt="Rent305 Net" height="36pt"/> Rental Properties in Miami</a></h1>
           <div id="links">
             <a href='index.html'>Properties</a> | 
-            <a href='nearby.html'>Nearby Restaurants</a> | 
             <a href='tips.html'>Tenant Tips</a>
           </div>
         </div>  </header>
@@ -801,6 +800,62 @@
                      alt="57-patio-laundry.jpg" />
               </a>
             </li>      
+            <li data-src="media/large/6515SW48ST/98-6515SW48ST-AreaReport-1.png"
+                data-sub-html=""
+                data-download-url="media/large/6515SW48ST/98-6515SW48ST-AreaReport-1.png"
+                
+                data-filename="98-6515SW48ST-AreaReport-1.png"
+          
+              >
+              <a href="media/large/6515SW48ST/98-6515SW48ST-AreaReport-1.png">
+                <img src="media/thumbs/6515SW48ST/98-6515SW48ST-AreaReport-1.png"
+                     width="400"
+                     height="400"
+                     alt="98-6515SW48ST-AreaReport-1.png" />
+              </a>
+            </li>      
+            <li data-src="media/large/6515SW48ST/98-6515SW48ST-AreaReport-2.png"
+                data-sub-html=""
+                data-download-url="media/large/6515SW48ST/98-6515SW48ST-AreaReport-2.png"
+                
+                data-filename="98-6515SW48ST-AreaReport-2.png"
+          
+              >
+              <a href="media/large/6515SW48ST/98-6515SW48ST-AreaReport-2.png">
+                <img src="media/thumbs/6515SW48ST/98-6515SW48ST-AreaReport-2.png"
+                     width="400"
+                     height="400"
+                     alt="98-6515SW48ST-AreaReport-2.png" />
+              </a>
+            </li>      
+            <li data-src="media/large/6515SW48ST/98-6515SW48ST-AreaReport-3.png"
+                data-sub-html=""
+                data-download-url="media/large/6515SW48ST/98-6515SW48ST-AreaReport-3.png"
+                
+                data-filename="98-6515SW48ST-AreaReport-3.png"
+          
+              >
+              <a href="media/large/6515SW48ST/98-6515SW48ST-AreaReport-3.png">
+                <img src="media/thumbs/6515SW48ST/98-6515SW48ST-AreaReport-3.png"
+                     width="400"
+                     height="400"
+                     alt="98-6515SW48ST-AreaReport-3.png" />
+              </a>
+            </li>      
+            <li data-src="media/large/6515SW48ST/98-6515SW48ST-AreaReport-4.png"
+                data-sub-html=""
+                data-download-url="media/large/6515SW48ST/98-6515SW48ST-AreaReport-4.png"
+                
+                data-filename="98-6515SW48ST-AreaReport-4.png"
+          
+              >
+              <a href="media/large/6515SW48ST/98-6515SW48ST-AreaReport-4.png">
+                <img src="media/thumbs/6515SW48ST/98-6515SW48ST-AreaReport-4.png"
+                     width="400"
+                     height="400"
+                     alt="98-6515SW48ST-AreaReport-4.png" />
+              </a>
+            </li>      
             <li data-src="media/large/6515SW48ST/99-Rent305-Net.png"
                 data-sub-html=""
                 data-download-url="media/large/6515SW48ST/99-Rent305-Net.png"
@@ -835,7 +890,29 @@
       </footer>
     
     </div>
-    <!-- Video loader -->
+    <script>
+      function addLink(suffix, title) {
+        if (!document.getElementById(suffix)) {
+          let url = window.location.pathname.replace(/(-.*)?\.html/, '-'+suffix+'.html');
+          let request = new XMLHttpRequest();  
+          request.open('GET', url, true);
+          request.onreadystatechange = function(){
+            if (request.readyState === 2 && request.statusText === "OK") {
+                let link = document.createElement("A");
+                link.setAttribute("href", url);
+                link.setAttribute("id", suffix);
+                link.appendChild( document.createTextNode(title) );
+                let links = document.getElementById("links");
+                links.appendChild(document.createTextNode(" | "));
+                links.appendChild(link);
+              }
+          };
+          request.send();
+        }
+      }
+      addLink("Nearby", "Nearby Restaurants");
+      addLink("AreaReport", "Area Report");
+    </script>    <!-- Video loader -->
     <div id="videos">
     </div>
 

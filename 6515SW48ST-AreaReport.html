@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Nearby Restaurants - Rent 305</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href='public/core.css' />
+  <link rel="stylesheet" href='public/theme.css' />
+
+</head>
+
+<body>
+  <div id="container">
+    
+  <!--
+    Gallery title
+  -->
+  <header>
+    <div id="header">
+      <h1><a href="index.html"><img src="public/rent305-icon.png" alt="Rent305 Net" height="36pt"/> Nearby Restaurants</a></h1>
+      <div id="links">
+        <a href='index.html'>Properties</a> | 
+        <a href='tips.html'>Tenant Tips</a>
+      </div>
+    </div>  
+  </header>
+  <br/>
+  <img src="public/6515SW48ST-AreaReport-1.svg" width="100%"/>
+  <br/>
+  <img src="public/6515SW48ST-AreaReport-2.svg" width="100%"/>
+  <br/>
+  <img src="public/6515SW48ST-AreaReport-3.svg" width="100%"/>
+  <br/>
+  <img src="public/6515SW48ST-AreaReport-4.svg" width="100%"/>
+  <br/>
+  <!--
+    Optional footer
+  -->
+  <footer>
+    <div id="footer">
+      <table style="border: 0;">
+          <tr>
+              <td><img src='public/rent305-icon.png' alt='Rent305 Net' height='36pt'/></td>
+              <td style="vertical-align: middle;">Copyright &copy;2020 <br/> <a href='mailto:info@rent305.net?subject=6515 SW 48th St'>info@rent305.net</a></td>
+          </tr>
+      </table>
+      <div class="links">
+        Apply Online: 
+        <a href='https://www.zillow.com/homedetails/44207880_zpid/' target='_blank'><img src='public/zillow.png' alt='Zillow' height='18'></img></a> |
+        <a href='https://www.apartments.com/6515-sw-48th-st-miami-fl/mpn18jl/' target='_blank'><img src='public/apartments.png' alt='Apartments.com' height='18'></img></a>
+      </div>
+    </div>
+  </footer>
+  </div>
+
+<script>
+  function addLink(suffix, title) {
+    if (!document.getElementById(suffix)) {
+      let url = window.location.pathname.replace(/(-.*)?\.html/, '-'+suffix+'.html');
+      let request = new XMLHttpRequest();  
+      request.open('GET', url, true);
+      request.onreadystatechange = function(){
+        if (request.readyState === 2 && request.statusText === "OK") {
+            let link = document.createElement("A");
+            link.setAttribute("href", url);
+            link.setAttribute("id", suffix);
+            link.appendChild( document.createTextNode(title) );
+            let links = document.getElementById("links");
+            links.appendChild(document.createTextNode(" | "));
+            links.appendChild(link);
+          }
+      };
+      request.send();
+    }
+  }
+  addLink("Nearby", "Nearby Restaurants");
+  addLink("AreaReport", "Area Report");
+</script>
+ 
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-97419370-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+
+</html>
