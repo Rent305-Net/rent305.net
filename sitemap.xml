@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://rent305.net/index.html</loc>
-        <lastmod>2020-08-02T16:51:23.940Z</lastmod>
-    </url>
-    <url>
-        <loc>https://rent305.net/6515SW48ST.html</loc>
-        <lastmod>2020-08-02T16:51:23.940Z</lastmod>
-    </url>
+  <url>
+    <loc>https://rent305.net/6515SW48ST-AreaReport.html</loc>
+    <lastmod>2020-08-02T21:36:41+0000</lastmod>
+  </url>
+  <url>
+    <loc>https://rent305.net/6515SW48ST-Nearby.html</loc>
+    <lastmod>2020-08-02T21:36:41+0000</lastmod>
+  </url>
+  <url>
+    <loc>https://rent305.net/6515SW48ST.html</loc>
+    <lastmod>2020-08-02T21:36:41+0000</lastmod>
+  </url>
+  <url>
+    <loc>https://rent305.net/index.html</loc>
+    <lastmod>2020-08-02T21:36:41+0000</lastmod>
+  </url>
+  <url>
+    <loc>https://rent305.net/tips.html</loc>
+    <lastmod>2020-08-02T21:36:41+0000</lastmod>
+  </url>
 </urlset>

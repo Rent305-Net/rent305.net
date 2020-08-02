@@ -10,6 +10,8 @@
       <link rel="stylesheet" href="public/lightgallery/css/lg-exif.min.css" />
       <link rel="stylesheet" href="public/core.css" />
       <link rel="stylesheet" href="public/theme.css" />
+      <link rel="icon"  type="image/svg+xml" href="public/global.svg" />
+      <link rel="alternate icon"  type="image/png" href="public/global.png" />
       <script data-ad-client="ca-pub-7387057669373800" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   </head>
 
@@ -893,7 +895,11 @@
     <script>
       function addLink(suffix, title) {
         if (!document.getElementById(suffix)) {
-          let url = window.location.pathname.replace(/(-.*)?\.html/, '-'+suffix+'.html');
+          let url = window.location.pathname;
+          if (url === "/") {
+            url = "/index.html";
+          }
+          url = url.replace(/(-.*)?\.html/, '-'+suffix+'.html');
           let request = new XMLHttpRequest();  
           request.open('GET', url, true);
           request.onreadystatechange = function(){
