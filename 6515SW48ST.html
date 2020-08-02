@@ -897,7 +897,7 @@
           let request = new XMLHttpRequest();  
           request.open('GET', url, true);
           request.onreadystatechange = function(){
-            if (request.readyState === 2 && request.statusText === "OK") {
+            if (request.readyState === 2 && request.status >= 200 && request.status <= 299) {
                 let link = document.createElement("A");
                 link.setAttribute("href", url);
                 link.setAttribute("id", suffix);
