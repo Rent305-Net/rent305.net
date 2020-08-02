@@ -3,9 +3,12 @@ sudo: required
 dist: trusty
 services:
   - docker
+before_script:
+- mkdir -p build
+- touch build/sitemap.xml
 script:
 - docker run -t -i -v "$(pwd):/work" thumbsupgallery/thumbsup /bin/sh -c "cd /work/ && thumbsup --config config.json"
-- ./build.sh
+- sh ./build.sh
 deploy:
   provider: pages
   skip_cleanup: true

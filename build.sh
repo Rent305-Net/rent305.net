@@ -1,13 +1,12 @@
 #!/bin/bash
 
 mkdir -p build
-chown -R $USER:$USER build
 cp *.html build
 cd build
 
 ROOT_URL=https://rent305.net
 SITEMAP=sitemap.xml
-DATE=`date -Is`
+DATE=`date -I`
 
 echo '<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' > $SITEMAP
