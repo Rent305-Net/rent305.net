@@ -51,3 +51,26 @@
   </footer>
 
 </div>
+<script>
+  function addLink(suffix, title) {
+    if (!document.getElementById(suffix)) {
+      let url = window.location.pathname.replace(/(-.*)?\.html/, '-'+suffix+'.html');
+      let request = new XMLHttpRequest();  
+      request.open('GET', url, true);
+      request.onreadystatechange = function(){
+        if (request.readyState === 2 && request.statusText === "OK") {
+            let link = document.createElement("A");
+            link.setAttribute("href", url);
+            link.setAttribute("id", suffix);
+            link.appendChild( document.createTextNode(title) );
+            let links = document.getElementById("links");
+            links.appendChild(document.createTextNode(" | "));
+            links.appendChild(link);
+          }
+      };
+      request.send();
+    }
+  }
+  addLink("Nearby", "Nearby Restaurants");
+  addLink("AreaReport", "Area Report");
+</script>

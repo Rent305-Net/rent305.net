@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Nearby Restaurants - Rent 305</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href='public/core.css' />
+  <link rel="stylesheet" href='public/theme.css' />
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    #map {
+      height: 90vh;
+      background-color: gray;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Styling for an info pane that slides out from the left. 
+     * Hidden by default. */
+    #panel {
+      height: 100%;
+      width: null;
+      background-color: black;
+      position: fixed;
+      z-index: 1;
+      overflow-x: hidden;
+      transition: all .2s ease-out;
+    }
+
+    .open {
+      width: 250px;
+    }
+
+    /* Styling for place details */
+    .hero {
+      width: 100%;
+      height: auto;
+      max-height: 166px;
+      display: block;
+    }
+
+    .place,
+    p {
+      font-family: 'open sans', arial, sans-serif;
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+    .info {
+      color: black;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    
+  <!--
+    Gallery title
+  -->
+  <header>
+    <div id="header">
+      <h1><a href="index.html"><img src="public/rent305-icon.png" alt="Rent305 Net" height="36pt"/> Nearby Restaurants</a></h1>
+      <div id="links">
+        <a href='index.html'>Properties</a> | 
+        <a href='tips.html'>Tenant Tips</a>
+      </div>
+    </div>  
+  </header>
+
+  <!-- The slide-out panel for showing place details -->
+  <div id="panel"></div>
+
+  <!-- Map appears here -->
+  <div id="map"></div>
+
+  <!--
+    Optional footer
+  -->
+  <footer>
+    <div id="footer">
+      <table style="border: 0;">
+          <tr>
+              <td><img src='public/rent305-icon.png' alt='Rent305 Net' height='36pt'/></td>
+              <td style="vertical-align: middle;">Copyright &copy;2020 <br/> <a href='mailto:info@rent305.net?subject=6515 SW 48th St'>info@rent305.net</a></td>
+          </tr>
+      </table>
+      <div class="links">
+        Apply Online: 
+        <a href='https://www.zillow.com/homedetails/44207880_zpid/' target='_blank'><img src='public/zillow.png' alt='Zillow' height='18'></img></a> |
+        <a href='https://www.apartments.com/6515-sw-48th-st-miami-fl/mpn18jl/' target='_blank'><img src='public/apartments.png' alt='Apartments.com' height='18'></img></a>
+      </div>
+    </div>
+  </footer>
+  </div>
+  <script>
+    /* Note: This example requires that you consent to location sharing when
+     * prompted by your browser. If you see the error "Geolocation permission
+     * denied.", it means you probably did not give permission for the browser * to locate you. */
+    let pos;
+    let map;
+    let bounds;
+    let infoWindow;
+    let currentInfoWindow;
+    let service;
+    let infoPane;
+    function initMap() {
+      // Initialize variables
+      bounds = new google.maps.LatLngBounds();
+      infoWindow = new google.maps.InfoWindow;
+      currentInfoWindow = infoWindow;
+      infoPane = document.getElementById('panel');
+
+      pos = { lng: -80.30086, lat: 25.725964 };
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: pos,
+        zoom: 10,
+        styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.business',
+              stylers: [{'visibility': 'off'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
+      });
+      bounds.extend(pos);
+      var marker = new google.maps.Marker({
+        position: pos,
+        map: map,
+        label: {
+          text: "6515 SW 48th St",
+          color: '#d59563'
+        }
+      });
+      map.setCenter(pos);
+
+      // Call Places Nearby Search on user's location
+      getNearbyPlaces(pos);
+    }
+
+    // Perform a Places Nearby Search Request
+    function getNearbyPlaces(position) {
+      let request = {
+        location: position,
+        keyword: 'restaurant',
+        // rankBy: google.maps.places.RankBy.DISTANCE,
+        // type: ['restaurant', 'bar', 'cafe', 'bakery'],
+        radius: 2000
+      };
+
+      service = new google.maps.places.PlacesService(map);
+      service.nearbySearch(request, nearbyCallback);
+    }
+
+    // Handle the results (up to 20) of the Nearby Search
+    function nearbyCallback(results, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        createMarkers(results);
+      }
+    }
+
+    // Set markers at the location of each place result
+    function createMarkers(places) {
+      places.forEach(place => {
+        let marker = new google.maps.Marker({
+          position: place.geometry.location,
+          map: map,
+          title: place.name,
+          label: {
+            text: place.name,
+            color: '#d59563'
+          }
+        });
+
+        /* TODO: Step 4B: Add click listeners to the markers */
+        // Add click listener to each marker
+        google.maps.event.addListener(marker, 'click', () => {
+          let request = {
+            placeId: place.place_id,
+            fields: ['name', 'formatted_address', 'geometry', 'rating',
+              'website', 'photos']
+          };
+
+          /* Only fetch the details of a place when the user clicks on a marker.
+           * If we fetch the details for all place results as soon as we get
+           * the search response, we will hit API rate limits. */
+          service.getDetails(request, (placeResult, status) => {
+            showDetails(placeResult, marker, status)
+          });
+        });
+
+        // Adjust the map bounds to include the location of this marker
+        bounds.extend(place.geometry.location);
+      });
+      /* Once all the markers have been placed, adjust the bounds of the map to
+       * show all the markers within the visible area. */
+      map.fitBounds(bounds);
+    }
+
+    // Builds an InfoWindow to display details above the marker
+    function showDetails(placeResult, marker, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        let placeInfowindow = new google.maps.InfoWindow();
+        let rating = "None";
+        if (placeResult.rating) rating = placeResult.rating;
+        placeInfowindow.setContent('<div class="info"><strong>' + placeResult.name +
+          '</strong><br>' + 'Rating: ' + rating + '</div>');
+        placeInfowindow.open(marker.map, marker);
+        currentInfoWindow.close();
+        currentInfoWindow = placeInfowindow;
+        showPanel(placeResult);
+      } else {
+        console.log('showDetails failed: ' + status);
+      }
+    }
+
+    // Displays place details in a sidebar
+    function showPanel(placeResult) {
+      // If infoPane is already open, close it
+      if (infoPane.classList.contains("open")) {
+        infoPane.classList.remove("open");
+      }
+
+      // Clear the previous details
+      while (infoPane.lastChild) {
+        infoPane.removeChild(infoPane.lastChild);
+      }
+
+      // Add the primary photo, if there is one
+      if (placeResult.photos) {
+        let firstPhoto = placeResult.photos[0];
+        let photo = document.createElement('img');
+        photo.classList.add('hero');
+        photo.src = firstPhoto.getUrl();
+        infoPane.appendChild(photo);
+      }
+
+      // Add place details with text formatting
+      let name = document.createElement('h1');
+      name.classList.add('place');
+      name.textContent = placeResult.name;
+      infoPane.appendChild(name);
+      if (placeResult.rating) {
+        let rating = document.createElement('p');
+        rating.classList.add('details');
+        rating.textContent = `Rating: ${placeResult.rating} \u272e`;
+        infoPane.appendChild(rating);
+      }
+      let address = document.createElement('p');
+      address.classList.add('details');
+      address.textContent = placeResult.formatted_address;
+      infoPane.appendChild(address);
+      if (placeResult.website) {
+        let websitePara = document.createElement('p');
+        let websiteLink = document.createElement('a');
+        let websiteUrl = document.createTextNode(placeResult.website);
+        websiteLink.appendChild(websiteUrl);
+        websiteLink.title = placeResult.website;
+        websiteLink.href = placeResult.website;
+        websitePara.appendChild(websiteLink);
+        infoPane.appendChild(websitePara);
+      }
+
+      // Open the infoPane
+      infoPane.classList.add("open");
+    }
+  </script>
+
+<script>
+  function addLink(suffix, title) {
+    if (!document.getElementById(suffix)) {
+      let url = window.location.pathname.replace(/(-.*)?\.html/, '-'+suffix+'.html');
+      let request = new XMLHttpRequest();  
+      request.open('GET', url, true);
+      request.onreadystatechange = function(){
+        if (request.readyState === 2 && request.statusText === "OK") {
+            let link = document.createElement("A");
+            link.setAttribute("href", url);
+            link.setAttribute("id", suffix);
+            link.appendChild( document.createTextNode(title) );
+            let links = document.getElementById("links");
+            links.appendChild(document.createTextNode(" | "));
+            links.appendChild(link);
+          }
+      };
+      request.send();
+    }
+  }
+  addLink("Nearby", "Nearby Restaurants");
+  addLink("AreaReport", "Area Report");
+</script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0XBr_ScdAMmCsuD03bdfVcVP-vYv91Q0&libraries=places&callback=initMap">
+  </script>
+
+  <div id="adsense">
+    <script data-ad-client="ca-pub-7387057669373800" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle"
+        style="display:inline-block;width:728px;height:90px"
+        data-ad-client="ca-pub-1234567890123456"
+        data-ad-slot="1234567890"/>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-97419370-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+
+</html>
